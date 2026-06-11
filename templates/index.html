@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <div>Hello World!</div> 
+
+    <div class="products">
+        {% for product in products_list   %}
+            <div class="scale product_cad">
+                <div class=product_image>
+                    {% if product.avatar %}
+                        <img src="{{ product.avatar.url }}" alt="{{product.first_name}}">
+                    {% endif %}
+                </div>
+                <div class="student_info">
+                    <div>Имя: {{product.name}}</div>
+                    <div>Фамилия: {{product.price}}</div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+
+{% endblock main %}
