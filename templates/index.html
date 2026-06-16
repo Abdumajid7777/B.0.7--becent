@@ -1,27 +1,43 @@
 {% extends "base.html" %}
 
-{% block main %}
 
-    <div>Hello World!</div> 
+{% block main %}
+    <h1>Hello, World!</h1>
+
+    <h1>Students of Prolab</h1> 
 
     <div class="products">
-        {% for product in products_list   %}
-            <div class="scale product_cad">
+        {% for products in products_list %}
+            <div class="scale product_card">
                 <div class=product_image>
                     {% if product.avatar %}
-                        <img src="{{ product.avatar.url }}" alt="{{product.first_name}}">
+                        <img src="{{ product.avatar.url }}" alt="{{product.name}}">
                     {% endif %}
                 </div>
-                <div class="student_info">
-                    <div>Имя: {{product.name}}</div>
-                    <div>Фамилия: {{product.price}}</div>
+                <div class="product_info">
+                    <div>Имя: {{ product.name }},</div>
+                    <div>Цена {{ product.price }},</div>
+                    <div>Описание: {{ product.description }},</div>
+                    <div>Цвет: {{ product.color }},</div>
+                    <div>Категория: {{ product.category.name }},</div>
                 </div>
-
+                <a href="{% url 'update_product' id=product.id %}">update</a>
             </div>
         {% endfor %}
     </div>
 
-</body>
-</html>
+
+    <div class="categorys">
+        {% for categorys in categorys_list %}
+            <div class="category_card">
+
+                <div class="category_info">
+                    <div>Имя: {{ category.name }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
 
 {% endblock main %}

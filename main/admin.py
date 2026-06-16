@@ -1,19 +1,23 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from .models import Product, Category
 
-from .models import Product
+
 # Register your models here.
 
 
-# class StudentAdminInline()
+# class ProductAdminInline()
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ( "name", "price", "get_avatar")
-    list_filter = ("price",)
-    list_per_page = 3
-    
+    list_display = (
+        "id", "name", "price", "description", "color", 
+        "category"
+    )
+    list_display_links = ("id", "name")
+    search_fields = ("name", "price", "age", "color")
+    list_filter = ("category",)
 
     @admin.display(description=_("Аватарка"))
     def get_avatar(self, product):
@@ -23,4 +27,12 @@ class ProductAdmin(admin.ModelAdmin):
             )
         return '_'
 
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("id", "name")
+    list_filter = ("name", )
+
+    
+    
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)

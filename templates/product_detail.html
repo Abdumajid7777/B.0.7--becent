@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <h1>Detail page for student</h1>
+    <div class="products">
+        {% for products in products_list %}
+            <div class="product_card">
+                <div class="product_info">
+                    <div>Имя: {{ product.name }},</div>
+                    <div>Цена {{ product.price }},</div>
+                    <div>Описание: {{ product.description }},</div>
+                    <div>Цвет: {{ product.color }},</div>
+                    <div>Категория: {{ product.category.name }},</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock main %}

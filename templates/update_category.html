@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+
+{% block main %}
+    <h1>Редоктировать </h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <label>:</label>
+            <input type="text" name="name" value="{{ category.name }}"> 
+        </p>
+        <p>
+            <label>Каличество категорий</label>
+            <input type="number" name="category_count" value="{{ category.category_count }}"> 
+        </p>
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'main' %}">Назад </a>
+{% endblock main %}

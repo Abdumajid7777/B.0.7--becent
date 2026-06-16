@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+
+{% block main %}
+    <h1>Редоктировать студента</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <label>Имя:</label>
+            <input type="text" name="name" value="{{ product.name }}"> 
+        </p>
+        <p>
+            <label>Цена:</label>
+            <input type="numbers" name="price" value="{{ product.price }}"> 
+        </p>
+        <p>
+            <label>Описание:</label>
+            <input type="text" name="description" value="{{ product.description }}"> 
+        </p>
+        <p>
+            <label>Цвет:</label>
+            <input type="text" name="color" value="{{ product.color }}"> 
+        </p>
+
+        <p>
+            <label>Категория</label>
+            <select name="category"> 
+                <option value="">-- Выберите категорию --</option>
+              {% for category in categorys %}
+                <option value="{{ category.id}}"
+                 {% if product.category.id == category.id %}selected{% endif %}>
+                {{ category.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label>Аватарка:</label>
+        {% if student.avatar %}
+            <img src="{{ product.avatar.url }}" width="80"><br>
+            <small>Загрузите новую если хотите заменить</small><br>
+        {% endif %}
+        <input type="file" name="avatar">
+        </p>
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <a href="{% url 'main' %}">Назад </a>
+{% endblock main %}
